@@ -1,0 +1,294 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-image: linear-gradient(#fff, #ffddf1);
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/*
+Monitores de 24" 
+@media only screen and (min-width: 1680px) and (max-width: 1920px) {}
+*/
+@media(min-width: 1201px) { 
+    .logoCliente{
+        max-width:12%;
+        min-width:5%;
+        width: auto;
+        height: auto;
+    }
+
+    h1{
+        font-size: 300%;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue", sans-serif;
+    }
+      
+    .imgPrinter{
+        width: 55%;
+    }
+
+    .options{
+        width: 90%;
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 6%;
+        padding-bottom: 1%;
+        margin-top: 3%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1%;
+        align-items: end;
+        justify-items: start;
+        justify-content: end;
+    }
+}
+
+@media(min-width: 991px) and (max-width: 1200px) { 
+    .logoCliente{
+        max-width:15%;
+        min-width:5%;
+        width: auto;
+        height: auto;
+    }
+
+    h1{
+        font-size: 250%;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue", sans-serif;
+    }
+      
+    .imgPrinter{
+        width: 45%;
+    }
+
+    .options{
+        width: 109%;
+        transform: scale(80%);
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 6%;
+        padding-bottom: 1%;
+        margin-top: 3%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1%;
+        align-items: end;
+        justify-items: start;
+        justify-content: end;
+    }
+}
+
+@media(max-width: 990px) {
+    .logoCliente{
+        max-width:12%;
+        min-width:5%;
+        width: auto;
+        height: auto;
+    }
+
+    h1{
+        font-size: 300%;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue", sans-serif;
+    }
+      
+    .imgPrinter{
+        width: 55%;
+    }
+
+    .options{
+        width: 90%;
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 6%;
+        padding-bottom: 1%;
+        margin-top: 3%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1%;
+        align-items: end;
+        justify-items: start;
+        justify-content: end;
+    }
+}
+
+@media(max-width: 990px){ 
+    .logoCliente{
+        max-width:18%;
+        min-width:5%;
+        width: auto;
+        height: auto;
+    }
+
+    h1{
+        font-size: 200%;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue", sans-serif;
+    }
+      
+    .imgPrinter{
+        width: 40%;
+    }
+
+    .options{
+        width: 110%;
+        transform: scale(70%);
+        padding-top: 3%;
+        padding-left: 3%;
+        padding-right: 6%;
+        padding-bottom: 1%;
+        margin-top: 3%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1%;
+        align-items: end;
+        justify-items: start;
+        justify-content: end;
+    }
+}    
+
+header{
+    width: 100%;
+    max-height: 5%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding-top: 0.5%;
+    margin: 0;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 20% 50% auto;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    z-index:1;
+}
+
+article{
+    padding-bottom: 3%;
+}
+
+h2{
+    orphans: 3;
+    widows: 3;
+}
+
+h4{
+	margin-top: 0;
+	color: #ff0000;
+}
+
+span{
+    font-size: 80%;
+    color: #ff0000;
+}
+
+fieldset{
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: solid;
+	margin-left: 2%;
+}
+
+input{
+    box-shadow: 0 0 0 0;
+    border-top: 0 none;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-bottom: 1px solid #000;
+    outline: 0;
+    overflow: visible;
+}
+
+input[type=checkbox].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+}
+
+input[type=checkbox].switch {
+    width: 38px;
+    border-radius: 11px;
+}
+
+input[type=checkbox]:checked, input[type=radio] {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: .3s;
+    --d-t: .6s;
+    --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+}
+
+input[type=checkbox], input[type=radio] {
+    --active: #ff66c4;
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, .3);
+    --border: #BBC1E1;
+    --border-hover: #ff66c4;
+    --background: #fff;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+}
+
+input[type=checkbox].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+}
+
+input[type=checkbox]:after, input[type=radio]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+}
+
+footer{
+    padding: 1%;
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    background-color: #ff66c4;
+}
+
+.negrito{
+	font-weight: bold;
+}
+
+.disabled{
+	background-color: #dfdfdf;
+	border: 1px solid;
+}
+
+.hidden{
+	display: none;
+}
+
+.paragraphFooter{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    color: #fff;
+  }

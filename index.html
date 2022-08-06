@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+
+	<title>Impressão de endereços</title>
+
+	<link rel="stylesheet" type="text/css" href="css/CssGlobal.css">
+	<link rel="stylesheet" type="text/css" href="css/impressaoDeEtiquetas.css">
+
+	<script src="js/JsGlobal.js"></script>
+	<script src="js/JsBarcode.all.js"></script>
+	<script src="js/JQuery.min.js"></script>
+	<script type="text/javascript">
+	    var str = window.location.search;
+	    var objURL = {};
+		var parseQueryString = function() {
+		    str.replace(
+		        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+		        function( $0, $1, $2, $3 ){
+		            objURL[ $1 ] = $3;
+		        }
+		    );
+		    return objURL;
+		};
+
+		var
+			params = parseQueryString();
+			j = params.qtdPrint -2;
+
+		//	Etiqueta 1
+
+			remetenteValueUm = params.nomeRemetenteUm;
+			nomeRemetenteUm = decodeURIComponent(remetenteValueUm).replace(/\+/g, ' ');
+			logradouroValueUm = params.logradouroRemetenteUm ? params.logradouroRemetenteUm+','+'&nbsp;':'';
+			logradouroRemetenteUm = decodeURIComponent(logradouroValueUm).replace(/\+/g, ' ');
+			numeroRemetenteValueUm = params.numeroRemetenteUm;		
+			if(numeroRemetenteValueUm){
+				numeroRemetenteUm = decodeURIComponent(numeroRemetenteValueUm).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroRemetenteUm = 'S/N';
+			}
+
+			if(params.complementoRemetenteUm != null && params.complementoRemetenteUm != ''){
+				complementoValueUm = '-'+'&nbsp;'+params.complementoRemetenteUm;
+				complementoRemetenteUm = decodeURIComponent(complementoValueUm).replace(/\+/g, ' ');
+			} else {
+				complementoRemetenteUm = '';
+			}
+			enderecoRemetenteUm = logradouroRemetenteUm+numeroRemetenteUm+complementoRemetenteUm;
+			bairroValueUm = params.bairroRemetenteUm ? params.bairroRemetenteUm+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroRemetenteUm = decodeURIComponent(bairroValueUm).replace(/\+/g, ' ');
+			cidadeValueUm = params.cidadeRemetenteUm+'&nbsp;'+'-'+'&nbsp;';
+			cidadeRemetenteUm = decodeURIComponent(cidadeValueUm).replace(/\+/g, ' ');
+			ufValueUm = params.ufRemetenteUm;
+			ufRemetenteUm = ufValueUm.replace(/\+/g, ' ');
+			bairroCidadeUFRemetenteUm = bairroRemetenteUm+cidadeRemetenteUm+ufRemetenteUm;
+			cepRemetenteUm = params.cepRemetenteUm;
+
+			destinatarioValueUm = params.nomeDestinatarioUm;
+			nomeDestinatarioUm = decodeURIComponent(destinatarioValueUm).replace(/\+/g, ' ');
+			logradouroDestValueUm = params.logradouroDestinatarioUm ? params.logradouroDestinatarioUm+','+'&nbsp;':'';
+			logradouroDestinatarioUm = decodeURIComponent(logradouroDestValueUm).replace(/\+/g, ' ');
+			numeroDestinatariovalueUm = params.numeroDestinatarioUm;
+			if(numeroDestinatariovalueUm != null && numeroDestinatariovalueUm != ''){
+				numeroDestinatarioUm = decodeURIComponent(numeroDestinatariovalueUm).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroDestinatarioUm = 'S/N';
+			}
+
+			if(params.complementoDestinatarioUm != null && params.complementoDestinatarioUm != ''){
+				complementoDestValueUm = '-'+'&nbsp;'+params.complementoDestinatarioUm;
+				complementoDestinatarioUm = decodeURIComponent(complementoDestValueUm).replace(/\+/g, ' ');
+			} else {
+				complementoDestinatarioUm = '';
+			}
+			enderecoDestinatarioUm = logradouroDestinatarioUm+numeroDestinatarioUm+complementoDestinatarioUm;
+			bairroDestValueUm = params.bairroDestinatarioUm ? params.bairroDestinatarioUm+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroDestinatarioUm = decodeURIComponent(bairroDestValueUm).replace(/\+/g, ' ');
+			cidadeDestValueUm = params.cidadeDestinatarioUm+'&nbsp;'+'-'+'&nbsp;';
+			cidadeDestinatarioUm = decodeURIComponent(cidadeDestValueUm).replace(/\+/g, ' ');
+			ufDestValueUm = params.ufDestinatarioUm;
+			ufDestinatarioUm = ufDestValueUm.replace(/\+/g, ' ');
+			bairroCidadeUFDestinatarioUm = bairroDestinatarioUm+cidadeDestinatarioUm+ufDestinatarioUm;
+			cepDestinatarioUm = params.cepDestinatarioUm;
+
+		//	Etiqueta 2
+
+			remetenteValueDois = params.nomeRemetenteDois;
+			nomeRemetenteDois = decodeURIComponent(remetenteValueDois).replace(/\+/g, ' ');
+			logradouroValueDois = params.logradouroRemetenteDois ? params.logradouroRemetenteDois+','+'&nbsp;':'';
+			logradouroRemetenteDois = decodeURIComponent(logradouroValueDois).replace(/\+/g, ' ');
+			numeroRemetenteValueDois = params.numeroRemetenteDois;		
+			if(numeroRemetenteValueDois != null && numeroRemetenteValueDois != ''){
+				numeroRemetenteDois = decodeURIComponent(numeroRemetenteValueDois).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroRemetenteDois = 'S/N';
+			}
+
+			if(params.complementoRemetenteDois != null && params.complementoRemetenteDois != ''){
+				complementoValueDois = '-'+'&nbsp;'+params.complementoRemetenteDois;
+				complementoRemetenteDois = decodeURIComponent(complementoValueDois).replace(/\+/g, ' ');
+			} else {
+				complementoRemetenteDois = '';
+			}
+			enderecoRemetenteDois = logradouroRemetenteDois+numeroRemetenteDois+complementoRemetenteDois;
+			bairroValueDois = params.bairroRemetenteDois ? params.bairroRemetenteDois+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroRemetenteDois = decodeURIComponent(bairroValueDois).replace(/\+/g, ' ');
+			cidadeValueDois = params.cidadeRemetenteDois+'&nbsp;'+'-'+'&nbsp;';
+			cidadeRemetenteDois = decodeURIComponent(cidadeValueDois).replace(/\+/g, ' ');
+			ufValueDois = params.ufRemetenteDois;
+			ufRemetenteDois = ufValueDois.replace(/\+/g, ' ');
+			bairroCidadeUFRemetenteDois = bairroRemetenteDois+cidadeRemetenteDois+ufRemetenteDois;
+			cepRemetenteDois = params.cepRemetenteDois;
+
+			destinatarioValueDois = params.nomeDestinatarioDois;
+			nomeDestinatarioDois = decodeURIComponent(destinatarioValueDois).replace(/\+/g, ' ');
+			logradouroDestValueDois = params.logradouroDestinatarioDois ? params.logradouroDestinatarioDois+','+'&nbsp;':'';
+			logradouroDestinatarioDois = decodeURIComponent(logradouroDestValueDois).replace(/\+/g, ' ');
+			numeroDestinatariovalueDois = params.numeroDestinatarioDois;
+			if(numeroDestinatariovalueDois != null && numeroDestinatariovalueDois != ''){
+				numeroDestinatarioDois = decodeURIComponent(numeroDestinatariovalueDois).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroDestinatarioDois = 'S/N';
+			}
+
+			if(params.complementoDestinatarioDois != null && params.complementoDestinatarioDois != ''){
+				complementoDestValueDois = '-'+'&nbsp;'+params.complementoDestinatarioDois;
+				complementoDestinatarioDois = decodeURIComponent(complementoDestValueDois).replace(/\+/g, ' ');
+			} else {
+				complementoDestinatarioDois = '';
+			}
+			enderecoDestinatarioDois = logradouroDestinatarioDois+numeroDestinatarioDois+complementoDestinatarioDois;
+			bairroDestValueDois = params.bairroDestinatarioDois ? params.bairroDestinatarioDois+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroDestinatarioDois = decodeURIComponent(bairroDestValueDois).replace(/\+/g, ' ');
+			cidadeDestValueDois = params.cidadeDestinatarioDois+'&nbsp;'+'-'+'&nbsp;';
+			cidadeDestinatarioDois = decodeURIComponent(cidadeDestValueDois).replace(/\+/g, ' ');
+			ufDestValueDois = params.ufDestinatarioDois;
+			ufDestinatarioDois = ufDestValueDois.replace(/\+/g, ' ');
+			bairroCidadeUFDestinatarioDois = bairroDestinatarioDois+cidadeDestinatarioDois+ufDestinatarioDois;
+			cepDestinatarioDois = params.cepDestinatarioDois;
+
+		//	Etiqueta 3
+
+			remetenteValueTres = params.nomeRemetenteTres;
+			nomeRemetenteTres = decodeURIComponent(remetenteValueTres).replace(/\+/g, ' ');
+			logradouroValueTres = params.logradouroRemetenteTres ? params.logradouroRemetenteTres+','+'&nbsp;':'';
+			logradouroRemetenteTres = decodeURIComponent(logradouroValueTres).replace(/\+/g, ' ');
+			numeroRemetenteValueTres = params.numeroRemetenteTres;		
+			if(numeroRemetenteValueTres != null && numeroRemetenteValueTres != ''){
+				numeroRemetenteTres = decodeURIComponent(numeroRemetenteValueTres).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroRemetenteTres = 'S/N';
+			}
+
+			if(params.complementoRemetenteTres != null && params.complementoRemetenteTres != ''){
+				complementoValueTres = '-'+'&nbsp;'+params.complementoRemetenteTres;
+				complementoRemetenteTres = decodeURIComponent(complementoValueTres).replace(/\+/g, ' ');
+			} else {
+				complementoRemetenteTres = '';
+			}
+			enderecoRemetenteTres = logradouroRemetenteTres+numeroRemetenteTres+complementoRemetenteTres;
+			bairroValueTres = params.bairroRemetenteTres ? params.bairroRemetenteTres+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroRemetenteTres = decodeURIComponent(bairroValueTres).replace(/\+/g, ' ');
+			cidadeValueTres = params.cidadeRemetenteTres+'&nbsp;'+'-'+'&nbsp;';
+			cidadeRemetenteTres = decodeURIComponent(cidadeValueTres).replace(/\+/g, ' ');
+			ufValueTres = params.ufRemetenteTres;
+			ufRemetenteTres = ufValueTres.replace(/\+/g, ' ');
+			bairroCidadeUFRemetenteTres = bairroRemetenteTres+cidadeRemetenteTres+ufRemetenteTres;
+			cepRemetenteTres = params.cepRemetenteTres;
+
+			destinatarioValueTres = params.nomeDestinatarioTres;
+			nomeDestinatarioTres = decodeURIComponent(destinatarioValueTres).replace(/\+/g, ' ');
+			logradouroDestValueTres = params.logradouroDestinatarioTres ? params.logradouroDestinatarioTres+','+'&nbsp;':'';
+			logradouroDestinatarioTres = decodeURIComponent(logradouroDestValueTres).replace(/\+/g, ' ');
+			numeroDestinatariovalueTres = params.numeroDestinatarioTres;
+			if(numeroDestinatariovalueTres != null && numeroDestinatariovalueTres != ''){
+				numeroDestinatarioTres = decodeURIComponent(numeroDestinatariovalueTres).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroDestinatarioTres = 'S/N';
+			}
+
+			if(params.complementoDestinatarioTres != null && params.complementoDestinatarioTres != ''){
+				complementoDestValueTres = '-'+'&nbsp;'+params.complementoDestinatarioTres;
+				complementoDestinatarioTres = decodeURIComponent(complementoDestValueTres).replace(/\+/g, ' ');
+			} else {
+				complementoDestinatarioTres = '';
+			}
+			enderecoDestinatarioTres = logradouroDestinatarioTres+numeroDestinatarioTres+complementoDestinatarioTres;
+			bairroDestValueTres = params.bairroDestinatarioTres ? params.bairroDestinatarioTres+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroDestinatarioTres = decodeURIComponent(bairroDestValueTres).replace(/\+/g, ' ');
+			cidadeDestValueTres = params.cidadeDestinatarioTres+'&nbsp;'+'-'+'&nbsp;';
+			cidadeDestinatarioTres = decodeURIComponent(cidadeDestValueTres).replace(/\+/g, ' ');
+			ufDestValueTres = params.ufDestinatarioTres;
+			ufDestinatarioTres = ufDestValueTres.replace(/\+/g, ' ');
+			bairroCidadeUFDestinatarioTres = bairroDestinatarioTres+cidadeDestinatarioTres+ufDestinatarioTres;
+			cepDestinatarioTres = params.cepDestinatarioTres;
+
+		//	Etiqueta 4
+
+			remetenteValueQuatro = params.nomeRemetenteQuatro;
+			nomeRemetenteQuatro = decodeURIComponent(remetenteValueQuatro).replace(/\+/g, ' ');
+			logradouroValueQuatro = params.logradouroRemetenteQuatro ? params.logradouroRemetenteQuatro+','+'&nbsp;':'';
+			logradouroRemetenteQuatro = decodeURIComponent(logradouroValueQuatro).replace(/\+/g, ' ');
+			numeroRemetenteValueQuatro = params.numeroRemetenteTres;		
+			if(numeroRemetenteValueQuatro != null && numeroRemetenteValueQuatro != ''){
+				numeroRemetenteQuatro = decodeURIComponent(numeroRemetenteValueQuatro).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroRemetenteQuatro = 'S/N';
+			}
+
+			if(params.complementoRemetenteQuatro != null && params.complementoRemetenteQuatro != ''){
+				complementoValueQuatro = '-'+'&nbsp;'+params.complementoRemetenteQuatro;
+				complementoRemetenteQuatro = decodeURIComponent(complementoValueQuatro).replace(/\+/g, ' ');
+			} else {
+				complementoRemetenteQuatro = '';
+			}
+			enderecoRemetenteQuatro = logradouroRemetenteQuatro+numeroRemetenteQuatro+complementoRemetenteQuatro;
+			bairroValueQuatro = params.bairroRemetenteQuatro ? params.bairroRemetenteQuatro+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroRemetenteQuatro = decodeURIComponent(bairroValueQuatro).replace(/\+/g, ' ');
+			cidadeValueQuatro = params.cidadeRemetenteQuatro+'&nbsp;'+'-'+'&nbsp;';
+			cidadeRemetenteQuatro = decodeURIComponent(cidadeValueQuatro).replace(/\+/g, ' ');
+			ufValueQuatro = params.ufRemetenteQuatro;
+			ufRemetenteQuatro = ufValueQuatro.replace(/\+/g, ' ');
+			bairroCidadeUFRemetenteQuatro = bairroRemetenteQuatro+cidadeRemetenteQuatro+ufRemetenteQuatro;
+			cepRemetenteQuatro = params.cepRemetenteQuatro;
+
+			destinatarioValueQuatro = params.nomeDestinatarioQuatro;
+			nomeDestinatarioQuatro = decodeURIComponent(destinatarioValueQuatro).replace(/\+/g, ' ');
+			logradouroDestValueQuatro = params.logradouroDestinatarioQuatro ? params.logradouroDestinatarioQuatro+','+'&nbsp;':'';
+			logradouroDestinatarioQuatro = decodeURIComponent(logradouroDestValueQuatro).replace(/\+/g, ' ');
+			numeroDestinatariovalueQuatro = params.numeroDestinatarioQuatro;
+			if(numeroDestinatariovalueQuatro != null && numeroDestinatariovalueQuatro != ''){
+				numeroDestinatarioQuatro = decodeURIComponent(numeroDestinatariovalueQuatro).replace(/\+/g, ' ')+'&nbsp;';
+			} else {
+				numeroDestinatarioQuatro = 'S/N';
+			}
+
+			if(params.complementoDestinatarioQuatro != null && params.complementoDestinatarioQuatro != ''){
+				complementoDestValueQuatro = '-'+'&nbsp;'+params.complementoDestinatarioQuatro;
+				complementoDestinatarioQuatro = decodeURIComponent(complementoDestValueQuatro).replace(/\+/g, ' ');
+			} else {
+				complementoDestinatarioQuatro = '';
+			}
+			enderecoDestinatarioQuatro = logradouroDestinatarioQuatro+numeroDestinatarioQuatro+complementoDestinatarioQuatro;
+			bairroDestValueQuatro = params.bairroDestinatarioQuatro ? params.bairroDestinatarioQuatro+'&nbsp;'+'-'+'&nbsp;':'';
+			bairroDestinatarioQuatro = decodeURIComponent(bairroDestValueQuatro).replace(/\+/g, ' ');
+			cidadeDestValueQuatro = params.cidadeDestinatarioQuatro+'&nbsp;'+'-'+'&nbsp;';
+			cidadeDestinatarioQuatro = decodeURIComponent(cidadeDestValueQuatro).replace(/\+/g, ' ');
+			ufDestValueQuatro = params.ufDestinatarioQuatro;
+			ufDestinatarioQuatro = ufDestValueQuatro.replace(/\+/g, ' ');
+			bairroCidadeUFDestinatarioQuatro = bairroDestinatarioQuatro+cidadeDestinatarioQuatro+ufDestinatarioQuatro;
+			cepDestinatarioQuatro = params.cepDestinatarioQuatro;
+
+		function codBarras(){
+			//Etiqueta 1
+			$('#nomeRemetenteUm').html(nomeRemetenteUm);
+			$('#enderecoRemetenteUm').html(enderecoRemetenteUm);
+			$('#bairroCidadeUFRemetenteUm').html(bairroCidadeUFRemetenteUm);
+			$('#cepRemetenteUm').html(cepRemetenteUm);
+			$('#nomeDestinatarioUm').html(nomeDestinatarioUm);
+			$('#enderecoDestinatarioUm').html(enderecoDestinatarioUm);
+			$('#bairroCidadeUFDestinatarioUm').html(bairroCidadeUFDestinatarioUm);
+			$('#cepDestinatarioUm').html('CEP: '+cepDestinatarioUm);
+			JsBarcode("#codigoDeBarrasDestUm", cepDestinatarioUm, {displayValue: true});
+
+			//Etiqueta 2
+			if(nomeRemetenteDois != null && nomeRemetenteDois != '' && 
+				//logradouroRemetenteDois != null && logradouroRemetenteDois != '' && 
+				numeroRemetenteDois != null && numeroRemetenteDois != '' && 
+				//bairroRemetenteDois != null && bairroRemetenteDois != '' && 
+				cidadeRemetenteDois != null && cidadeRemetenteDois != '' && 
+				ufRemetenteDois != null && ufRemetenteDois != '' && 
+				cepRemetenteDois != null && cepRemetenteDois != '' &&
+				nomeDestinatarioDois != null && nomeDestinatarioDois != '' && 
+				logradouroDestinatarioDois != null && logradouroDestinatarioDois != '' && 
+				numeroDestinatarioDois != null && numeroDestinatarioDois != '' && 
+				bairroDestinatarioDois != null && bairroDestinatarioDois != '' && 
+				cidadeDestinatarioDois != null && cidadeDestinatarioDois != '' && 
+				ufDestinatarioDois != null && ufDestinatarioDois != '' && 
+				cepDestinatarioDois != null && cepDestinatarioDois != ''){
+				$('#nomeRemetenteDois').html(nomeRemetenteDois);
+				$('#enderecoRemetenteDois').html(enderecoRemetenteDois);
+				$('#bairroCidadeUFRemetenteDois').html(bairroCidadeUFRemetenteDois);
+				$('#cepRemetenteDois').html(cepRemetenteDois);
+				$('#nomeDestinatarioDois').html(nomeDestinatarioDois);
+				$('#enderecoDestinatarioDois').html(enderecoDestinatarioDois);
+				$('#bairroCidadeUFDestinatarioDois').html(bairroCidadeUFDestinatarioDois);
+				$('#cepDestinatarioDois').html('CEP: '+cepDestinatarioDois);
+				JsBarcode("#codigoDeBarrasDestDois", cepDestinatarioDois, {displayValue: true});
+				$('#remDois').css('display', 'grid');
+				$('#destDois').css('display', 'grid');
+			}
+			//Etiqueta 3
+			if(nomeRemetenteTres != null && nomeRemetenteTres != '' && 
+				//logradouroRemetenteTres != null && logradouroRemetenteTres != '' && 
+				numeroRemetenteTres != null && numeroRemetenteTres != '' && 
+				//bairroRemetenteTres != null && bairroRemetenteTres != '' && 
+				cidadeRemetenteTres != null && cidadeRemetenteTres != '' && 
+				ufRemetenteTres != null && ufRemetenteTres != '' && 
+				cepRemetenteTres != null && cepRemetenteTres != '' &&
+				nomeDestinatarioTres != null && nomeDestinatarioTres != '' && 
+				logradouroDestinatarioTres != null && logradouroDestinatarioTres != '' && 
+				numeroDestinatarioTres != null && numeroDestinatarioTres != '' && 
+				bairroDestinatarioTres != null && bairroDestinatarioTres != '' && 
+				cidadeDestinatarioTres != null && cidadeDestinatarioTres != '' && 
+				ufDestinatarioTres != null && ufDestinatarioTres != '' && 
+				cepDestinatarioTres != null && cepDestinatarioTres != ''){
+				$('#nomeRemetenteTres').html(nomeRemetenteTres);
+				$('#enderecoRemetenteTres').html(enderecoRemetenteTres);
+				$('#bairroCidadeUFRemetenteTres').html(bairroCidadeUFRemetenteTres);
+				$('#cepRemetenteTres').html(cepRemetenteTres);
+				$('#nomeDestinatarioTres').html(nomeDestinatarioTres);
+				$('#enderecoDestinatarioTres').html(enderecoDestinatarioTres);
+				$('#bairroCidadeUFDestinatarioTres').html(bairroCidadeUFDestinatarioTres);
+				$('#cepDestinatarioTres').html('CEP: '+cepDestinatarioTres);
+				JsBarcode("#codigoDeBarrasDestTres", cepDestinatarioTres, {displayValue: true});
+				$('#remTres').css('display', 'grid');
+				$('#destTres').css('display', 'grid');
+			}
+
+			//Etiqueta 4
+			if(nomeRemetenteQuatro != null && nomeRemetenteQuatro != '' && 
+				//logradouroRemetenteQuatro != null && logradouroRemetenteQuatro != '' && 
+				numeroRemetenteQuatro != null && numeroRemetenteQuatro != '' && 
+				//bairroRemetenteQuatro != null && bairroRemetenteQuatro != '' && 
+				cidadeRemetenteQuatro != null && cidadeRemetenteQuatro != '' && 
+				ufRemetenteQuatro != null && ufRemetenteQuatro != '' && 
+				cepRemetenteQuatro != null && cepRemetenteDois != '' &&
+				nomeDestinatarioQuatro != null && nomeDestinatarioQuatro != '' && 
+				logradouroDestinatarioQuatro != null && logradouroDestinatarioQuatro != '' && 
+				numeroDestinatarioQuatro != null && numeroDestinatarioQuatro != '' && 
+				bairroDestinatarioQuatro != null && bairroDestinatarioQuatro != '' && 
+				cidadeDestinatarioQuatro != null && cidadeDestinatarioQuatro != '' && 
+				ufDestinatarioQuatro != null && ufDestinatarioQuatro != '' && 
+				cepDestinatarioQuatro != null && cepDestinatarioQuatro != ''){
+				$('#nomeRemetenteQuatro').html(nomeRemetenteQuatro);
+				$('#enderecoRemetenteQuatro').html(enderecoRemetenteQuatro);
+				$('#bairroCidadeUFRemetenteQuatro').html(bairroCidadeUFRemetenteQuatro);
+				$('#cepRemetenteQuatro').html(cepRemetenteQuatro);
+				$('#nomeDestinatarioQuatro').html(nomeDestinatarioQuatro);
+				$('#enderecoDestinatarioQuatro').html(enderecoDestinatarioQuatro);
+				$('#bairroCidadeUFDestinatarioQuatro').html(bairroCidadeUFDestinatarioQuatro);
+				$('#cepDestinatarioQuatro').html('CEP: '+cepDestinatarioQuatro);
+				JsBarcode("#codigoDeBarrasDestQuatro", cepDestinatarioQuatro, {displayValue: true});
+				$('#remQuatro').css('display', 'grid');
+				$('#destQuatro').css('display', 'grid');
+			}
+			imprimir();
+			fecharAposImprimir();
+		}
+	</script>
+</head>
+<body onload="codBarras()">
+
+	<!--Etiqueta 1-->
+	<div id="etiqueta1">
+		<div class="gridPrint" id="remUm">
+			<fieldset>
+			<div class="divEtiqueta">
+				<div class="nameTitle negrito">REMETENTE</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeRemetenteUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoRemetenteUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFRemetenteUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepRemetenteUm"></label>
+				</div>
+			</div>
+			</fieldset>
+			<fieldset>
+			<div class="divEtiqueta" id="destUm">
+				<div class="nameTitle negrito">DESTINATÁRIO</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeDestinatarioUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoDestinatarioUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFDestinatarioUm"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepDestinatarioUm"></label>
+				</div>
+				<img id="codigoDeBarrasDestUm">
+			</div>
+			</fieldset>
+		</div>
+	</div>
+		<!--Etiqueta 2-->
+	<div id="etiqueta2">
+		<div class="gridPrint" id="remDois">
+			<fieldset>
+			<div class="divEtiqueta">
+				<div class="nameTitle negrito">REMETENTE</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeRemetenteDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoRemetenteDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFRemetenteDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepRemetenteDois"></label>
+				</div>
+			</div>
+			</fieldset>
+			<fieldset>	
+			<div class="divEtiqueta" id="destDois">
+				<div class="nameTitle negrito">DESTINATÁRIO</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeDestinatarioDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoDestinatarioDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFDestinatarioDois"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepDestinatarioDois"></label>
+				</div>
+				<img id="codigoDeBarrasDestDois">
+			</div>
+			</fieldset>
+		</div>
+	</div>
+		<!--Etiqueta 3-->
+	<div id="etiqueta3">
+		<div class="gridPrint" id="remTres">
+			<fieldset>
+			<div class="divEtiqueta">
+				<div class="nameTitle negrito">REMETENTE</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeRemetenteTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoRemetenteTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFRemetenteTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepRemetenteTres"></label>
+				</div>
+			</div>
+			</fieldset>
+			<fieldset>
+			<div class="divEtiqueta" id="destTres">
+				<div class="nameTitle negrito">DESTINATÁRIO</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeDestinatarioTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoDestinatarioTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFDestinatarioTres"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepDestinatarioTres"></label>
+				</div>
+				<img id="codigoDeBarrasDestTres">
+			</div>
+			</fieldset>
+		</div>
+	</div>
+		<!--Etiqueta 4-->
+		<div id="etiqueta4">
+		<div class="gridPrint" id="remQuatro">
+			<fieldset>
+			<div class="divEtiqueta">
+				<div class="nameTitle negrito">REMETENTE</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeRemetenteQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoRemetenteQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFRemetenteQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepRemetenteQuatro"></label>
+				</div>
+			</div>
+			</fieldset>
+			<fieldset>
+			<div class="divEtiqueta" id="destQuatro">
+				<div class="nameTitle negrito">DESTINATÁRIO</div><br/>
+				<div class="etiquetaPrint negrito">
+					<label id="nomeDestinatarioQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="enderecoDestinatarioQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="bairroCidadeUFDestinatarioQuatro"></label>
+				</div>
+				<div class="remetentePrint">
+					<label id="cepDestinatarioQuatro"></label>
+				</div>
+				<img id="codigoDeBarrasDestQuatro">
+			</div>
+			</fieldset>
+		</div>
+	</div>
+</body>
+</html>
