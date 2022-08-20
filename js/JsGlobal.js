@@ -23,7 +23,8 @@ function enterBloqueadoNoInput(){
   });
 }
 
-async function imprimir(){
+function imprimir(){
+  var tela = $(window).width();
   var printWindow = window.open('', '', 'height=400,width=800');
   printWindow.document.write('<html><head><title>Impressão de Etiquetas</title>');
   printWindow.document.write('<style>');
@@ -42,40 +43,39 @@ async function imprimir(){
   var etiqueta2 = $("#etiqueta2").html();
   var etiqueta3 = $("#etiqueta3").html();
   var etiqueta4 = $("#etiqueta4").html();
-  await printWindow.document.write(etiqueta1);
+  printWindow.document.write(etiqueta1);
 
   if(nomeRemetenteDois && nomeDestinatarioDois &&
     cidadeRemetenteDois && cidadeDestinatarioDois &&
     ufRemetenteDois && ufDestinatarioDois &&
     cepRemetenteDois && cepDestinatarioDois){
-    await printWindow.document.write(etiqueta2);
+    printWindow.document.write(etiqueta2);
   }
 
   if(nomeRemetenteTres != '' && nomeRemetenteTres != null && nomeDestinatarioTres != '' && nomeDestinatarioTres != null &&
     cidadeRemetenteTres != '' && cidadeRemetenteTres != null && cidadeDestinatarioTres != '' && cidadeDestinatarioTres != null &&
     ufRemetenteTres && ufDestinatarioTres &&
     cepRemetenteTres && cepDestinatarioTres){
-    await printWindow.document.write(etiqueta3);
+    printWindow.document.write(etiqueta3);
   }
 
   if(nomeRemetenteQuatro && nomeDestinatarioQuatro &&
     cidadeRemetenteQuatro && cidadeDestinatarioQuatro &&
     ufRemetenteQuatro && ufDestinatarioQuatro &&
     cepRemetenteQuatro && cepDestinatarioQuatro){
-    await printWindow.document.write(etiqueta4);
+    printWindow.document.write(etiqueta4);
   }
 
   printWindow.document.write('</body></html>');
   printWindow.print()
-  //printWindow.close()
-  fechar()
+  
+  if(tela > 991){
+    printWindow.close()
+    window.close();
+  }
 }
 
-function fechar(){
-  window.close();
-}
-
-function fecharAposImprimir(){
+/*function fecharAposImprimir(){
   console.log('Fechando janela de impressão após impressão gerada!');
   window.onafterprint = fechar;
-}
+}*/
