@@ -67,7 +67,7 @@ async function imprimir(){
 
   printWindow.document.write('</body></html>');
   printWindow.print()
-  //printWindow.close()
+  printWindow.close()
   //fechar()
 }
 
