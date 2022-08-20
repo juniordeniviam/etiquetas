@@ -1,19 +1,4 @@
 
-/* Script que bloqueia um input
-    $(function() {
-       $('form').submit(function(event){
-           return checkFocus();
-        });
-     });
-     
-     function checkFocus() {
-      if ($('#inputNomeRemetente').is(':focus')) {
-         return false;
-      }
-      return true;
-     }
-*/
-
 function header(){
     $(window).scroll(function() {
       var scroll = $(window).scrollTop();
@@ -81,10 +66,6 @@ async function imprimir(){
     await printWindow.document.write(etiqueta4);
   }
 
-  //printWindow.document.write('<script>');
-  //printWindow.document.write("if(!$('#nomeDestinatarioDois').textContent){$('#remDois').style.display = 'none'$('#remTres').style.display = 'none'$('#remQuatro').style.display = 'none'}");
-  //printWindow.document.write('</script>');
-
   printWindow.document.write('</body></html>');
   printWindow.document.close();
   printWindow.print();
@@ -92,10 +73,10 @@ async function imprimir(){
 
 function fechar(){
   console.log('fechar!');
-  //window.close();
+  window.close();
 }
 
 function fecharAposImprimir(){
   console.log('fecharAposImprimir!');
-  //window.onafterprint = fechar;
+  window.onafterprint = fechar;
 }
