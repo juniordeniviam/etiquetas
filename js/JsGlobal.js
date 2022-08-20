@@ -70,6 +70,11 @@ async function imprimir(){
   printWindow.print()
 }
 
+function fechar(){
+  console.log('fechando janela de impressão');
+  window.close();
+}
+
 function fecharAposImprimir(){
   console.log('Fechando janela de impressão após impressão gerada!');
   window.onafterprint = fechar;
