@@ -68,10 +68,10 @@ async function imprimir(){
   printWindow.document.write('</body></html>');
   printWindow.print()
   printWindow.close()
+  fechar()
 }
 
 function fechar(){
-  console.log('fechando janela de impressão');
   window.close();
 }
 
