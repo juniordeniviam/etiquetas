@@ -1,4 +1,3 @@
-
 function header(){
     $(window).scroll(function() {
       var scroll = $(window).scrollTop();
@@ -69,14 +68,5 @@ async function imprimir(){
   printWindow.document.write('</body></html>');
   printWindow.document.close();
   printWindow.print();
-}
-
-function fechar(){
-  console.log('fechar!');
-  window.close();
-}
-
-function fecharAposImprimir(){
-  console.log('fecharAposImprimir!');
-  window.onafterprint = fechar;
+  printWindow.document.onafterprint = fechar;
 }
