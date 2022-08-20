@@ -66,7 +66,17 @@ async function imprimir(){
   }
 
   printWindow.document.write('</body></html>');
-  printWindow.document.close();
-  printWindow.print();
-  printWindow.document.onafterprint = fechar;
+  fechar()
+  printWindow.print()
+  fecharAposImprimir()
+}
+
+function fechar(){
+  console.log('fechando janela de impressão');
+  window.close();
+}
+
+function fecharAposImprimir(){
+  console.log('Fechando janela de impressão após impressão gerada!');
+  window.onafterprint = fechar;
 }
