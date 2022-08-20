@@ -1,13 +1,13 @@
 @media screen{
-/*	body{
+	body{
 		display:none;
 	}
-*/}
+}
 @media print{
-/*	body{
+	body{
 		display:block;
 	}
-*/}
+}
 
 fieldset{
 	width: 95%;
