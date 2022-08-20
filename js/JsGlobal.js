@@ -23,7 +23,7 @@ function enterBloqueadoNoInput(){
   });
 }
 
-function imprimir(){
+async function imprimir(){
   var tela = $(window).width();
   var printWindow = window.open('', '', 'height=400,width=800');
   printWindow.document.write('<html><head><title>Impressão de Etiquetas</title>');
@@ -43,27 +43,27 @@ function imprimir(){
   var etiqueta2 = $("#etiqueta2").html();
   var etiqueta3 = $("#etiqueta3").html();
   var etiqueta4 = $("#etiqueta4").html();
-  printWindow.document.write(etiqueta1);
+  await printWindow.document.write(etiqueta1);
 
   if(nomeRemetenteDois && nomeDestinatarioDois &&
     cidadeRemetenteDois && cidadeDestinatarioDois &&
     ufRemetenteDois && ufDestinatarioDois &&
     cepRemetenteDois && cepDestinatarioDois){
-    printWindow.document.write(etiqueta2);
+    await printWindow.document.write(etiqueta2);
   }
 
   if(nomeRemetenteTres != '' && nomeRemetenteTres != null && nomeDestinatarioTres != '' && nomeDestinatarioTres != null &&
     cidadeRemetenteTres != '' && cidadeRemetenteTres != null && cidadeDestinatarioTres != '' && cidadeDestinatarioTres != null &&
     ufRemetenteTres && ufDestinatarioTres &&
     cepRemetenteTres && cepDestinatarioTres){
-    printWindow.document.write(etiqueta3);
+    await printWindow.document.write(etiqueta3);
   }
 
   if(nomeRemetenteQuatro && nomeDestinatarioQuatro &&
     cidadeRemetenteQuatro && cidadeDestinatarioQuatro &&
     ufRemetenteQuatro && ufDestinatarioQuatro &&
     cepRemetenteQuatro && cepDestinatarioQuatro){
-    printWindow.document.write(etiqueta4);
+    await printWindow.document.write(etiqueta4);
   }
 
   printWindow.document.write('</body></html>');
