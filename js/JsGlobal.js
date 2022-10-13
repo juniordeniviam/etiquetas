@@ -71,10 +71,14 @@ async function imprimir(){
   
   if(tela > 991){
     printWindow.close()
-    window.onafterprint = fechar;
+    window.close();
   }
 }
 
-function fechar(){
+/*function fechar(){
   window.close();
 }
+function fecharAposImprimir(){
+  console.log('Fechando janela de impressão após impressão gerada com sucesso!');
+  window.onafterprint = fechar;
+}*/
