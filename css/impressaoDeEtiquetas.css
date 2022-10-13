@@ -10,7 +10,7 @@
 }
 
 fieldset{
-	width: 95%;
+	width: 100%;
 }
 
 img{
@@ -20,7 +20,7 @@ img{
 
 .gridPrint{
   	display: grid;
-  	grid-template-columns: 50% 50%;
+  	grid-template-columns: 48% 50%;
 	padding-bottom: 2%;
 }
 
