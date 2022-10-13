@@ -1,11 +1,11 @@
 @media screen{
 	body{
-		display:none;
+		/*display:none;*/
 	}
 }
 @media print{
 	body{
-		display:block;
+		/*display:block;*/
 	}
 }
 
