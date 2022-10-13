@@ -70,8 +70,8 @@ async function imprimir(){
   printWindow.print()
   
   if(tela > 991){
-    //printWindow.close()
-    //window.close();
+    printWindow.close()
+    window.close();
   }
 }
 
