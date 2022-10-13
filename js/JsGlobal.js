@@ -31,8 +31,8 @@ async function imprimir(){
 
   printWindow.document.write('.negrito{font-weight: bold;}');
   printWindow.document.write('.nameTitle{font-family: Arial;font-size: 150%;margin: 2%;}');
-  printWindow.document.write('.gridPrint{display: grid;grid-template-columns: 48% 50%;padding-bottom: 2%;}');
-  printWindow.document.write('fieldset{min-width: 0;padding: 0;margin: 0;border: solid;margin-left: 2%;}');
+  printWindow.document.write('.gridPrint{display: grid;grid-template-columns: 50% 50%;}');
+  printWindow.document.write('fieldset{min-width: 0;padding: 0;margin: 0;border: solid;}');
   printWindow.document.write('.divEtiqueta{padding-left: 4%;padding-bottom: 2%;}');
   printWindow.document.write('img{width: 50%;padding-left: 25%;}');
 
